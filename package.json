@@ -1,0 +1,39 @@
+{
+  "name": "climate-risk-tool-api",
+  "version": "1.0.0",
+  "description": "Climate Risk Tool API - ETL and API server for South African municipality climate data",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "migrate": "node scripts/migrate.js",
+    "etl:municipalities": "node scripts/etl/load-municipalities.js",
+    "etl:climate": "node scripts/etl/load-climate-data.js",
+    "etl:indices": "node scripts/etl/load-climate-indices.js",
+    "etl:all": "npm run etl:municipalities && npm run etl:climate && npm run etl:indices",
+    "db:verify": "node scripts/verify-data.js"
+  },
+  "keywords": [
+    "climate",
+    "gis",
+    "postgis",
+    "api",
+    "south-africa"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "pg": "^8.13.1",
+    "csv-parser": "^3.0.0",
+    "gdal-async": "^3.10.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
