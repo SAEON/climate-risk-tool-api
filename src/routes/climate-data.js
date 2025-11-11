@@ -96,11 +96,16 @@ router.get('/geojson/:scenario/:period/:index', async (req, res, next) => {
   try {
     const { scenario, period, index } = req.params;
 
-    // Validate climate index exists
+    // Validate climate index exists (must match actual climate_data table columns)
     const validIndices = [
-      'cdd', 'prcptot', 'r10mm', 'r20mm', 'r95p', 'r99p', 'rx1day', 'rx5day',
-      'sdii', 'cwd', 'r95ptot', 'r99ptot', 'dtr', 'fd', 'su', 'tn10p', 'tn90p',
-      'tnn', 'tnx', 'tr', 'tx10p', 'tx90p', 'txn', 'txx', 'txge30', 'wsdi', 'csdi'
+      // Precipitation indices
+      'cdd', 'cwd', 'prcptot', 'r10mm', 'r20mm', 'r95p', 'r99p',
+      'r95ptot', 'r99ptot', 'rx1day', 'rx5day', 'sdii',
+      // Temperature indices
+      'fd', 'tn10p', 'tn90p', 'tnlt2', 'tnn', 'tnx',
+      'tx10p', 'tx90p', 'txge30', 'txgt50p', 'txn', 'txx',
+      // Duration indices
+      'csdi', 'wsdi', 'txd_tnd'
     ];
 
     if (!validIndices.includes(index)) {

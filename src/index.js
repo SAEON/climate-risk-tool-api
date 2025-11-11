@@ -12,7 +12,6 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
 import { testConnection } from './config/database.js';
-import cache from './middleware/cache.js';
 
 import municipalitiesRoutes from './routes/municipalities.js';
 import climateDataRoutes from './routes/climate-data.js';
@@ -26,12 +25,11 @@ dotenv.config({ path: resolve(__dirname, '../.env') });
 
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 4002;
 
 // ============================================================================
 // MIDDLEWARE
 // ============================================================================
-
 
 app.use(helmet());
 
@@ -51,9 +49,6 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Cache middleware (applied globally to all GET requests)
-app.use(cache.middleware());
 
 // ============================================================================
 // ROUTES
@@ -91,22 +86,6 @@ app.use('/api/municipalities', municipalitiesRoutes);
 app.use('/api/climate-data', climateDataRoutes);
 app.use('/api/indices', indicesRoutes);
 
-// Cache management endpoints
-app.get('/api/cache/stats', (req, res) => {
-  res.json({
-    success: true,
-    cache: cache.getStats()
-  });
-});
-
-app.post('/api/cache/clear', (req, res) => {
-  cache.clear();
-  res.json({
-    success: true,
-    message: 'Cache cleared successfully'
-  });
-});
-
 
 app.use((req, res) => {
   res.status(404).json({
@@ -137,11 +116,9 @@ app.use((err, req, res, next) => {
 
 async function startServer() {
   try {
-
     console.log('Testing database connection...');
     await testConnection();
 
-    
     app.listen(PORT, () => {
       console.log('='.repeat(60));
       console.log(`Climate Risk Tool API Server`);

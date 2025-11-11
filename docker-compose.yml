@@ -1,0 +1,42 @@
+
+services:
+  climate-risk-tool:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: climate-risk-tool-api:latest
+    container_name: climate-risk-tool
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "4002:4002"
+    environment:
+      NODE_ENV: development
+      PORT: 4002
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4002/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # Networks
+    networks:
+      - climate-network
+
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    
+    command: npm run dev
+
+
+networks:
+  climate-network:
+    driver: bridge
+
+
