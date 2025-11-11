@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  climate-risk-tool:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: climate-risk-tool-api:${TAG}
+    container_name: climate-risk-tool-prod
+    restart: unless-stopped
+
+    # Environment configuration
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      PORT: 4002
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+
+    # Port mapping
+    ports:
+      - "4002:4002"
+
+    # Resource limits (adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4002/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # Logging configuration (logs to stdout/stderr for container orchestration)
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Networks
+    networks:
+      - climate-network
+
+networks:
+  climate-network:
+    driver: bridge

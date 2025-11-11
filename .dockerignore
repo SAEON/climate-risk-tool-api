@@ -1,0 +1,77 @@
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# package-lock.json  # DON'T ignore - needed for npm ci!
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile*
+.dockerignore
+docker-compose*
+compose*
+
+# IDE and Editor
+.vscode
+.idea
+.vs
+*.swp
+*.swo
+*~
+.project
+.settings
+.toolstarget
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Documentation
+README.md
+LICENSE
+docs/
+*.md
+!docs/API_*.md
+
+# Testing
+test/
+tests/
+coverage/
+.nyc_output
+
+# Build artifacts
+dist/
+build/
+.cache
+
+# Logs
+logs/
+*.log
+
+# Temporary and cache
+tmp/
+temp/
+.npm
+.eslintcache
+
+# Database files (if any local DBs)
+*.sqlite
+*.db
+
+# Large data files (adjust as needed)
+# Uncomment if you don't need these in the container
+# data/*.csv
+# data/*.shp
+# data/*.geojson

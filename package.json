@@ -21,19 +21,19 @@
     "api",
     "south-africa"
   ],
-  "author": "",
+  "author": "Samukelo Jiyane",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "pg": "^8.13.1",
-    "csv-parser": "^3.0.0",
-    "gdal-async": "^3.10.0",
-    "express": "^4.18.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.18.2",
     "helmet": "^7.1.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pg": "^8.13.1"
   },
   "devDependencies": {
+    "csv-parser": "^3.0.0",
+    "gdal-async": "^3.10.0",
     "nodemon": "^3.1.9"
   }
 }
