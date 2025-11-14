@@ -9,7 +9,7 @@ import { query } from '../config/database.js';
 const router = express.Router();
 
 /**
- * GET /api/climate-data/:municipalityId
+ * GET /climate-data/:municipalityId
  * Get all climate data for a municipality (all scenarios and periods)
  */
 router.get('/:municipalityId', async (req, res, next) => {
@@ -50,7 +50,7 @@ router.get('/:municipalityId', async (req, res, next) => {
 });
 
 /**
- * GET /api/climate-data/:municipalityId/:scenario/:period
+ * GET /climate-data/:municipalityId/:scenario/:period
  * Get specific scenario and period for a municipality
  */
 router.get('/:municipalityId/:scenario/:period', async (req, res, next) => {
@@ -88,7 +88,7 @@ router.get('/:municipalityId/:scenario/:period', async (req, res, next) => {
 });
 
 /**
- * GET /api/climate-data/geojson/:scenario/:period/:index
+ * GET /climate-data/geojson/:scenario/:period/:index
  * Get GeoJSON with climate data for mapping
  * Critical endpoint for visualization
  */
@@ -169,7 +169,7 @@ router.get('/geojson/:scenario/:period/:index', async (req, res, next) => {
 });
 
 /**
- * GET /api/climate-data/scenarios
+ * GET /climate-data/scenarios
  * Get list of available scenarios
  */
 router.get('/scenarios', async (req, res, next) => {
@@ -190,7 +190,7 @@ router.get('/scenarios', async (req, res, next) => {
 });
 
 /**
- * GET /api/climate-data/periods
+ * GET /climate-data/periods
  * Get list of available time periods
  */
 router.get('/periods', async (req, res, next) => {

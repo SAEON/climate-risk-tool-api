@@ -9,7 +9,7 @@ import { query } from '../config/database.js';
 const router = express.Router();
 
 /**
- * GET /api/municipalities
+ * GET /municipalities
  * Get all municipalities with basic info
  */
 router.get('/', async (req, res, next) => {
@@ -42,7 +42,7 @@ router.get('/', async (req, res, next) => {
 });
 
 /**
- * GET /api/municipalities/:id
+ * GET /municipalities/:id
  * Get single municipality by ID
  */
 router.get('/:id', async (req, res, next) => {
@@ -86,7 +86,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 /**
- * GET /api/municipalities/province/:province
+ * GET /municipalities/province/:province
  * Get municipalities by province
  */
 router.get('/province/:province', async (req, res, next) => {
@@ -121,7 +121,7 @@ router.get('/province/:province', async (req, res, next) => {
 });
 
 /**
- * GET /api/municipalities/district/:districtCode
+ * GET /municipalities/district/:districtCode
  * Get municipalities by district
  */
 router.get('/district/:districtCode', async (req, res, next) => {
@@ -164,7 +164,7 @@ router.get('/district/:districtCode', async (req, res, next) => {
 });
 
 /**
- * GET /api/municipalities/stats/summary
+ * GET /municipalities/stats/summary
  * Get summary statistics
  */
 router.get('/stats/summary', async (req, res, next) => {

@@ -71,20 +71,20 @@ app.get('/', (req, res) => {
     description: 'API for South African municipality climate risk data',
     endpoints: {
       health: '/health',
-      municipalities: '/api/municipalities',
-      climateData: '/api/climate-data',
-      geojson: '/api/geojson/:scenario/:period/:index',
-      indices: '/api/indices',
-      docs: '/api/docs'
+      municipalities: '/municipalities',
+      climateData: '/climate-data',
+      geojson: '/geojson/:scenario/:period/:index',
+      indices: '/indices',
+      docs: '/docs'
     },
     documentation: 'https://github.com/yourusername/climate-risk-tool-api'
   });
 });
 
 
-app.use('/api/municipalities', municipalitiesRoutes);
-app.use('/api/climate-data', climateDataRoutes);
-app.use('/api/indices', indicesRoutes);
+app.use('/municipalities', municipalitiesRoutes);
+app.use('/climate-data', climateDataRoutes);
+app.use('/indices', indicesRoutes);
 
 
 app.use((req, res) => {
@@ -93,9 +93,9 @@ app.use((req, res) => {
     message: `Route ${req.method} ${req.url} not found`,
     availableEndpoints: [
       'GET /health',
-      'GET /api/municipalities',
-      'GET /api/climate-data',
-      'GET /api/indices'
+      'GET /municipalities',
+      'GET /climate-data',
+      'GET /indices'
     ]
   });
 });

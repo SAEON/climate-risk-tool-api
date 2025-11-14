@@ -92,7 +92,7 @@ class CacheWarmingService {
    */
   async warmEntry(cache, scenario, period, index) {
     try {
-      const key = `GET:/api/climate-data/geojson/${scenario}/${period}/${index}`;
+      const key = `GET:/climate-data/geojson/${scenario}/${period}/${index}`;
 
       // Build the data
       const data = await this.buildGeoJSON(scenario, period, index);
@@ -193,8 +193,8 @@ class CacheWarmingService {
 
       // Cache with 7-day TTL
       const ttl = 7 * 24 * 60 * 60 * 1000;
-      cache.set('GET:/api/indices', indicesData, ttl);
-      console.log('  ✓ Warmed /api/indices');
+      cache.set('GET:/indices', indicesData, ttl);
+      console.log('  ✓ Warmed /indices');
 
       // Get all municipalities
       const municResult = await query(`
@@ -212,8 +212,8 @@ class CacheWarmingService {
         data: municResult.rows
       };
 
-      cache.set('GET:/api/municipalities', municData, ttl);
-      console.log('  ✓ Warmed /api/municipalities');
+      cache.set('GET:/municipalities', municData, ttl);
+      console.log('  ✓ Warmed /municipalities');
 
       this.warmedCount += 2;
     } catch (error) {

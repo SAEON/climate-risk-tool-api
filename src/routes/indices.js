@@ -9,7 +9,7 @@ import { query } from '../config/database.js';
 const router = express.Router();
 
 /**
- * GET /api/indices
+ * GET /indices
  * Get all climate indices with metadata
  */
 router.get('/', async (req, res, next) => {
@@ -49,7 +49,7 @@ router.get('/', async (req, res, next) => {
 });
 
 /**
- * GET /api/indices/sectors
+ * GET /indices/sectors
  * Get sector classification reference
  * Explains sector abbreviations used in climate indices
  */
@@ -86,7 +86,7 @@ router.get('/sectors', (req, res) => {
 });
 
 /**
- * GET /api/indices/color-schemes
+ * GET /indices/color-schemes
  * Get color scheme reference and explanation
  * Explains the relationship between color_palette_type and color_scheme
  */
@@ -169,7 +169,7 @@ router.get('/color-schemes', (req, res) => {
 });
 
 /**
- * GET /api/indices/:code
+ * GET /indices/:code
  * Get single climate index by code
  */
 router.get('/:code', async (req, res, next) => {
@@ -216,7 +216,7 @@ router.get('/:code', async (req, res, next) => {
 });
 
 /**
- * GET /api/indices/category/:category
+ * GET /indices/category/:category
  * Get climate indices by category
  */
 router.get('/category/:category', async (req, res, next) => {
@@ -266,7 +266,7 @@ router.get('/category/:category', async (req, res, next) => {
 });
 
 /**
- * GET /api/indices/stats/categories
+ * GET /indices/stats/categories
  * Get summary statistics by category
  */
 router.get('/stats/categories', async (req, res, next) => {
@@ -298,7 +298,7 @@ router.get('/stats/categories', async (req, res, next) => {
 });
 
 /**
- * GET /api/indices/stats/summary
+ * GET /indices/stats/summary
  * Get overall summary statistics
  */
 router.get('/stats/summary', async (req, res, next) => {
@@ -344,7 +344,7 @@ router.get('/stats/summary', async (req, res, next) => {
 });
 
 /**
- * GET /api/indices/stats/by-sector
+ * GET /indices/stats/by-sector
  * Get climate indices grouped by sector
  */
 router.get('/stats/by-sector', async (req, res, next) => {
