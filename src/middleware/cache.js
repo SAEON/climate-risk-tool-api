@@ -42,13 +42,13 @@ class InMemoryCache {
    * Determine TTL based on URL pattern
    */
   determineTTL(url) {
-    if (url.includes('/api/indices')) {
+    if (url.includes('/indices')) {
       return this.ttlSettings.metadata;
     }
-    if (url.includes('/api/climate-data/geojson/')) {
+    if (url.includes('/climate-data/geojson/')) {
       return this.ttlSettings.geojson;
     }
-    if (url.includes('/api/municipalities')) {
+    if (url.includes('/municipalities')) {
       return this.ttlSettings.municipalities;
     }
     if (url.includes('/health')) {
@@ -143,7 +143,7 @@ class InMemoryCache {
       }
 
       // Don't cache cache management endpoints
-      if (req.originalUrl.includes('/api/cache/')) {
+      if (req.originalUrl.includes('/cache/')) {
         return next();
       }
 
