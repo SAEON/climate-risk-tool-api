@@ -34,6 +34,6 @@ build/
 *.backup
 *.bak
 
-# Large data files (too big for git, use external storage)
+# Large data files (manually uploaded to server)
 vector/
 

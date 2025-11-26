@@ -43,9 +43,15 @@ cp .env.example .env
 # 3. Run migrations
 npm run migrate
 
-# 4. Load data (requires GDAL installed locally)
+# 4. Upload vector data (NOT in git due to size)
+# The vector/ directory contains a 218MB GeoPackage file required for ETL
+# Contact repository maintainer or upload manually to: ./vector/municipality_indices.gpkg
+
+# 5. Load data (requires GDAL installed locally)
 npm run etl:all
 ```
+
+> **Note:** The `vector/` directory containing the GeoPackage file (~218MB) is excluded from git. For production deployments, manually upload this directory to the server before running ETL scripts.
 
 ### Run API
 
