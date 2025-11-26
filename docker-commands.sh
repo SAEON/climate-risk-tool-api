@@ -143,17 +143,12 @@ etl-indices() {
     npm run etl:indices
 }
 
-# Run all ETL scripts in sequence
+# Run all ETL scripts in sequence (on host with GDAL)
 etl-all() {
     echo "Running complete ETL pipeline..."
-    echo "1. Loading municipalities..."
-    npm run etl:municipalities
+    echo "Note: Requires GDAL installed on host"
     echo ""
-    echo "2. Loading climate data..."
-    npm run etl:climate
-    echo ""
-    echo "3. Loading climate indices..."
-    npm run etl:indices
+    npm run etl:all
     echo ""
     echo "✓ ETL pipeline complete!"
 }
@@ -239,12 +234,12 @@ help() {
     echo "  ./docker-commands.sh test-api        - Test API endpoint"
     echo "  ./docker-commands.sh test-all        - Run all tests"
     echo ""
-    echo "Database / ETL (Run locally, NOT in Docker!):"
+    echo "Database / ETL (requires GDAL on host):"
     echo "  ./docker-commands.sh migrate         - Run database migrations"
+    echo "  ./docker-commands.sh etl-all         - Run complete ETL pipeline"
     echo "  ./docker-commands.sh etl-municipalities - Load 213 municipalities"
     echo "  ./docker-commands.sh etl-climate     - Load climate data from CSV"
     echo "  ./docker-commands.sh etl-indices     - Load climate indices metadata"
-    echo "  ./docker-commands.sh etl-all         - Run complete ETL pipeline"
     echo "  ./docker-commands.sh db-verify       - Verify database data"
     echo ""
     echo "Maintenance:"

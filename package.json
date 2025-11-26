@@ -11,7 +11,7 @@
     "etl:municipalities": "node scripts/etl/load-municipalities.js",
     "etl:climate": "node scripts/etl/load-climate-data.js",
     "etl:indices": "node scripts/etl/load-climate-indices.js",
-    "etl:all": "npm run etl:municipalities && npm run etl:climate && npm run etl:indices",
+    "etl:all": "npm run migrate && npm run etl:municipalities && npm run etl:climate && npm run etl:indices",
     "db:verify": "node scripts/verify-data.js"
   },
   "keywords": [
@@ -23,6 +23,10 @@
   ],
   "author": "Samukelo Jiyane",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SAEON/climate-risk-tool-api"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -33,7 +37,6 @@
   },
   "devDependencies": {
     "csv-parser": "^3.0.0",
-    "gdal-async": "^3.10.0",
-    "nodemon": "^3.1.9"
+    "gdal-async": "^3.10.0"
   }
 }

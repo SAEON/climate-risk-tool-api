@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: climate-risk-tool-api:${TAG}
+    image: climate-risk-tool-api:dev
     container_name: climate-risk-tool
     restart: unless-stopped
     env_file:
@@ -31,8 +31,8 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    
-    command: npm run start
+
+    command: npm run dev
 
 
 networks:

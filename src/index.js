@@ -77,7 +77,7 @@ app.get('/', (req, res) => {
       indices: '/indices',
       docs: '/docs'
     },
-    documentation: 'https://github.com/yourusername/climate-risk-tool-api'
+    documentation: 'https://github.com/SAEON/climate-risk-tool-api'
   });
 });
 
@@ -102,7 +102,10 @@ app.use((req, res) => {
 
 // Error handler
 app.use((err, req, res, next) => {
-  console.error('Error:', err);
+  console.error('Server error:', err.message);
+  if (process.env.NODE_ENV === 'development') {
+    console.error(err.stack);
+  }
 
   res.status(err.status || 500).json({
     error: err.message || 'Internal Server Error',
@@ -116,21 +119,16 @@ app.use((err, req, res, next) => {
 
 async function startServer() {
   try {
-    console.log('Testing database connection...');
     await testConnection();
 
     app.listen(PORT, () => {
-      console.log('='.repeat(60));
-      console.log(`Climate Risk Tool API Server`);
-      console.log('='.repeat(60));
-      console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`Server running on port ${PORT}`);
-      console.log(`API URL: http://localhost:${PORT}`);
-      console.log(`Health check: http://localhost:${PORT}/health`);
-      console.log('='.repeat(60));
+      const env = process.env.NODE_ENV || 'development';
+      console.log(`Climate Risk Tool API - ${env} mode`);
+      console.log(`Server: http://localhost:${PORT}`);
+      console.log(`Health: http://localhost:${PORT}/health`);
     });
   } catch (error) {
-    console.error('Failed to start server:', error);
+    console.error('Failed to start server:', error.message);
     process.exit(1);
   }
 }
@@ -139,11 +137,11 @@ async function startServer() {
 startServer();
 
 process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received: closing HTTP server');
+  console.log('SIGTERM received - shutting down gracefully');
   process.exit(0);
 });
 
 process.on('SIGINT', () => {
-  console.log('SIGINT signal received: closing HTTP server');
+  console.log('SIGINT received - shutting down gracefully');
   process.exit(0);
 });
