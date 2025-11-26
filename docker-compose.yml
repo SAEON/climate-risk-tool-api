@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: climate-risk-tool-api:dev
+    image: climate-risk-tool-api:${TAG}
     container_name: climate-risk-tool
     restart: unless-stopped
     env_file:

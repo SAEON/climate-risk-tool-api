@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: climate-risk-tool-api:latest
+    image: climate-risk-tool-api:${TAG}
     container_name: climate-risk-tool-prod
     restart: unless-stopped
 
