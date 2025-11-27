@@ -4,7 +4,7 @@ A REST API for accessing downscaled climate change projections for South African
 
 **Data Source:** SAEON Climate Change Projections for South Africa v1.0
 
-## 📊 Overview
+## Overview
 
 - **213 South African Municipalities** with spatial boundaries
 - **27 Climate Indices** (precipitation, temperature, extreme events)
@@ -12,7 +12,7 @@ A REST API for accessing downscaled climate change projections for South African
 - **3 Time Periods:** 2021-2040, 2041-2060, 2081-2100
 - **GeoJSON API** for web mapping applications
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -68,7 +68,7 @@ docker compose up -d
 
 API runs on `http://localhost:4002`
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### Municipalities
 
@@ -108,7 +108,7 @@ GET /api/indices/category/:category # Filter by category (precipitation/temperat
 | **Temperature (12)** | `fd`, `tn10p`, `tn90p`, `tnlt2`, `tnn`, `tnx`, `tx10p`, `tx90p`, `txge30`, `txgt50p`, `txn`, `txx` |
 | **Duration (3)** | `csdi`, `wsdi`, `txd_tnd` |
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ### Development
 
@@ -133,7 +133,7 @@ docker compose -f docker-compose.prod.yml up -d --build
 ./docker-commands.sh                # Show all commands
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 climate-risk-tool-api/
@@ -167,7 +167,7 @@ climate-risk-tool-api/
 └── .env.example              # Environment template
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 Create `.env` file:
 
@@ -191,22 +191,7 @@ DB_POOL_MAX=10
 CORS_ORIGIN=*  # Set to your domain in production
 ```
 
-## 🔒 Security
-
-- Non-root container user
-- Helmet.js security headers
-- CORS configuration
-- Parameterized SQL queries
-- Connection pooling with limits
-
-**Production Checklist:**
-- [ ] Update `CORS_ORIGIN` to your domain
-- [ ] Use strong database password
-- [ ] Enable HTTPS with reverse proxy
-- [ ] Enable database SSL connections
-- [ ] Set up regular backups
-
-## 📊 Performance
+## Performance
 
 - **Docker Image:** ~60MB (Alpine Linux)
 - **Response Times:**
@@ -215,7 +200,7 @@ CORS_ORIGIN=*  # Set to your domain in production
   - GeoJSON: 200-500ms
 - **Resource Limits:** 1 CPU, 1GB memory
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Health check
@@ -231,7 +216,7 @@ curl http://localhost:4002/api/climate-data/1/ssp245/near-term_2021-2040 | jq
 curl http://localhost:4002/api/climate-data/geojson/ssp585/far-term_2081-2100/txge30 | jq
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Database Connection Error
 
@@ -263,18 +248,11 @@ lsof -i :4002
 netstat -ano | findstr :4002
 ```
 
-## 📄 Data Attribution
-
-This API provides access to downscaled climate change projections developed by the South African Environmental Observation Network (SAEON).
-
-**Citation:**
-SAEON (2024). Downscaled Climate Change Projections for South Africa v1.0. South African Environmental Observation Network.
-
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📍 Repository
+## Repository
 
 https://github.com/SAEON/climate-risk-tool-api
 
