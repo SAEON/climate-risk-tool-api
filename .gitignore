@@ -37,3 +37,6 @@ build/
 # Large data files (manually uploaded to server)
 vector/
 
+# Deployment script (server-specific, not in repo)
+deploy_saeon_apps.sh
+
