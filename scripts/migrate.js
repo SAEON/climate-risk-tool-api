@@ -56,6 +56,7 @@ async function main() {
       '002_create_climate_data_table.sql',
       '003_create_climate_indices_table.sql',
       '004_add_district_fields.sql',
+      '005_add_climate_indices_frontend_columns.sql',
     ];
 
     console.log(`\nFound ${migrations.length} migration(s) to run\n`);
