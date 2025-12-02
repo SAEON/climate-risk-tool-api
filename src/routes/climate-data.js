@@ -117,7 +117,6 @@ router.get('/geojson/:scenario/:period/:index', async (req, res, next) => {
     }
 
     // Build dynamic query to get the specified index value
-    // Note: Column name is validated above and safe to interpolate
     const result = await query(`
       SELECT
         json_build_object(
@@ -126,7 +125,7 @@ router.get('/geojson/:scenario/:period/:index', async (req, res, next) => {
             json_build_object(
               'type', 'Feature',
               'id', m.id,
-              'geometry', ST_AsGeoJSON(m.geom)::json,
+              'geometry', ST_AsGeoJSON(ST_SimplifyPreserveTopology(m.geom, 0.01), 5)::json,
               'properties', json_build_object(
                 'id', m.id,
                 'municipality_name', m.municipality_name,
